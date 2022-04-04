@@ -8,7 +8,7 @@ def game(question, nameAnime, root_dir):
     window.clear()
     window.title("quizz")
     window.bgcolor('gray')
-    window.setup(width=1600, height = 1400)
+    window.setup(width=1900, height = 1000)
     window.tracer(0)
 
     pen = t.Turtle()
@@ -29,7 +29,7 @@ def correction(nameAnime, root_dir):
     window.clear()
     window.title("quizz")
     window.bgcolor('gray')
-    window.setup(width=1600, height = 1400)
+    window.setup(width=1900, height = 1000)
     window.tracer(0)
 
     pen = t.Turtle()
