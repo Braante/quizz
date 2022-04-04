@@ -55,9 +55,6 @@ def correction(nameAnime, root_dir):
     with open(answers_source_file) as correct_answer_file:
         for line in correct_answer_file:
             correct_answers.append(line)
-    
-    # print(his_answer)
-    # print(correct_answers)
 
     correct_answer = 0
 
@@ -73,15 +70,16 @@ def correction(nameAnime, root_dir):
     pen.hideturtle()
     pen.goto(0,0)
     pen.write("You have {} correct answers".format(correct_answer), align = 'center', font = ('Arial', 32, 'normal'))
-    time.sleep(5)
+    time.sleep(5)   
 
-    with open(his_source_file, 'r+') as his_answer_file:
-        his_answer_file.truncate(0)
-    
-
-
+#################################################################################################################################
 
 if __name__ == "__main__":
+
+    #clear the file of ancient player
+    with open("/home/brante/Documents/dev/projet_personnel/quizz/answers_player.txt", 'r+') as his_answer_file:
+        his_answer_file.truncate(0)
+    
     #creating the platform
     window = t.Screen()
     window.title("quizz")
