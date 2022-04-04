@@ -56,8 +56,24 @@ def correction(nameAnime, root_dir):
         for line in correct_answer_file:
             correct_answers.append(line)
     
-    print(his_answer)
-    print(correct_answers)
+    # print(his_answer)
+    # print(correct_answers)
+
+    correct_answer = 0
+
+    for i in range(len(correct_answers)):
+        if his_answer[i] == correct_answers[i]:
+            correct_answer += 1
+        
+    window.clear()
+    window.bgcolor('gray')
+    pen.speed(0)
+    pen.color("White")
+    pen.penup()
+    pen.hideturtle()
+    pen.goto(0,0)
+    pen.write("You have {} correct answers".format(correct_answer), align = 'center', font = ('Arial', 32, 'normal'))
+    time.sleep(5)
 
     with open(his_source_file, 'r+') as his_answer_file:
         his_answer_file.truncate(0)
