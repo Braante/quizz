@@ -58,6 +58,9 @@ def correction(nameAnime, root_dir):
     
     print(his_answer)
     print(correct_answers)
+
+    with open(his_source_file, 'r+') as his_answer_file:
+        his_answer_file.truncate(0)
     
 
 
