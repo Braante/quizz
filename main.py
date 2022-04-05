@@ -4,20 +4,39 @@ from pathlib import Path
 
 #show question and write answer player in a file
 def game(question, nameAnime, root_dir):
+    
     window = t.Screen()
     window.clear()
     window.title("quizz")
     window.bgcolor('gray')
-    window.setup(width=1900, height = 1000)
+    window.setup(width=1600, height = 400)
     window.tracer(0)
-
     pen = t.Turtle()
     pen.speed(0)
     pen.color("White")
     pen.penup()
     pen.hideturtle()
-    pen.goto(0,0)
-    pen.write("{}".format(question), align = 'center', font = ('Arial', 32, 'normal'))
+
+    compteur = 0
+    for letter in question:
+        compteur += 1
+    
+    question1 = ""
+    question2 = ""
+    if compteur > 50:
+        compteur = 0
+        for letter in question:
+            if compteur < 51:
+                compteur += 1
+                question1 += letter
+            else:
+                compteur += 1
+                question2 += letter
+        pen.goto(0,0)
+        pen.write("\n \n {} \n {}".format(question1, question2), align = 'center', font = ('Arial', 32, 'normal'))
+    else:
+        pen.write("{}".format(question), align = 'center', font = ('Arial', 32, 'normal'))
+    
     time.sleep(3)
     answer_player = t.textinput("answer", "Your answer ?")
     source_file = root_dir / "answers_player.txt"
@@ -29,7 +48,7 @@ def correction(nameAnime, root_dir):
     window.clear()
     window.title("quizz")
     window.bgcolor('gray')
-    window.setup(width=1900, height = 1000)
+    window.setup(width=1600, height = 400)
     window.tracer(0)
 
     pen = t.Turtle()
