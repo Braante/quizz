@@ -89,14 +89,19 @@ def correction(nameAnime, root_dir):
     pen.hideturtle()
     pen.goto(0,0)
     pen.write("You have {} correct answers".format(correct_answer), align = 'center', font = ('Arial', 32, 'normal'))
-    time.sleep(5)   
+    time.sleep(5) 
+
+
+def scoreboard(username):
+    with open("/home/brante/Documents/dev/projet_personnel/quizz/scoreboard.txt", 'r+', encoding="utf-8") as scoreboard:
+        scoreboard.write(username + " , " + correct_answer)
 
 #################################################################################################################################
 
 if __name__ == "__main__":
 
     #clear the file of ancient player
-    with open("/home/brante/Documents/dev/projet_personnel/quizz/answers_player.txt", 'r+') as his_answer_file:
+    with open("/home/brante/Documents/dev/projet_personnel/quizz/answers_player.txt", 'a') as his_answer_file:
         his_answer_file.truncate(0)
     
     #creating the platform
@@ -117,14 +122,13 @@ if __name__ == "__main__":
     time.sleep(2)
     window.clear()
 
+    username = t.textinput("username", "Choose your username :")
     nameAnime = t.textinput("anime", "Choose your anime :")
     nameAnime.lower()
     nameAnime += ".txt"
-    # print(nameAnime)
 
     root_dir = Path("/home/brante/Documents/dev/projet_personnel/quizz")
     source_file = root_dir / nameAnime
-    # print(source_file.name)
 
     questions = []
     with open(source_file) as questions_file:
@@ -135,4 +139,4 @@ if __name__ == "__main__":
         game(question, nameAnime, root_dir)
     
     correction(nameAnime, root_dir)
-    
+    scoreboard(username)
