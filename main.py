@@ -57,8 +57,8 @@ def correction(nameAnime, root_dir):
     pen.penup()
     pen.hideturtle()
     pen.goto(0,0)
-    pen.write("correction".format(question), align = 'center', font = ('Arial', 32, 'normal'))
-    time.sleep(5)
+    pen.write("correction", align = 'center', font = ('Arial', 32, 'normal'))
+    time.sleep(2)
 
     his_source_file = root_dir / "answers_player.txt"
     newNameAnime = "answers_" + nameAnime
@@ -89,12 +89,32 @@ def correction(nameAnime, root_dir):
     pen.hideturtle()
     pen.goto(0,0)
     pen.write("You have {} correct answers".format(correct_answer), align = 'center', font = ('Arial', 32, 'normal'))
-    time.sleep(5) 
+    time.sleep(5)
+    scoreboard(username, correct_answer)
 
 
-def scoreboard(username):
-    with open("/home/brante/Documents/dev/projet_personnel/quizz/scoreboard.txt", 'r+', encoding="utf-8") as scoreboard:
-        scoreboard.write(username + " , " + correct_answer)
+def scoreboard(username, correct_answer):
+    correct_answer = str(correct_answer)
+    with open("/home/brante/Documents/dev/projet_personnel/quizz/scoreboard.txt", 'a', encoding="utf-8") as scoreboard:
+        scoreboard.write(username + " : " + correct_answer + "\n")
+    
+    window.clear()
+    window.bgcolor('gray')
+    window.setup(width=400, height = 400)
+    window.tracer(0)
+    pen = t.Turtle()
+    pen.speed(0)
+    pen.color("White")
+    pen.penup()
+    pen.hideturtle()
+    pen.goto(0,0)
+
+    fichier = open("/home/brante/Documents/dev/projet_personnel/quizz/scoreboard.txt", "r")
+    contenu = fichier.read()
+    print(contenu)
+    pen.write("{}".format(contenu), align = 'center', font = ('Arial', 14, 'normal'))
+    time.sleep(30)
+
 
 #################################################################################################################################
 
@@ -125,6 +145,7 @@ if __name__ == "__main__":
     username = t.textinput("username", "Choose your username :")
     nameAnime = t.textinput("anime", "Choose your anime :")
     nameAnime.lower()
+    nameAnime = nameAnime.replace(" ", "_")
     nameAnime += ".txt"
 
     root_dir = Path("/home/brante/Documents/dev/projet_personnel/quizz")
@@ -139,4 +160,3 @@ if __name__ == "__main__":
         game(question, nameAnime, root_dir)
     
     correction(nameAnime, root_dir)
-    scoreboard(username)
