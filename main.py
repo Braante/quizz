@@ -94,9 +94,11 @@ def correction(nameAnime, root_dir):
 
 
 def scoreboard(username, correct_answer):
+    check_username = check(username, correct_answer)
     correct_answer = str(correct_answer)
-    with open("/home/brante/Documents/dev/projet_personnel/quizz/scoreboard.txt", 'a', encoding="utf-8") as scoreboard:
-        scoreboard.write(username + " : " + correct_answer + "\n")
+    if check_username == True:
+        with open("/home/brante/Documents/dev/projet_personnel/quizz/scoreboard.txt", 'a', encoding="utf-8") as scoreboard:
+            scoreboard.write(username + " : " + correct_answer + "\n")        
     
     window.clear()
     window.bgcolor('gray')
@@ -114,6 +116,23 @@ def scoreboard(username, correct_answer):
     print(contenu)
     pen.write("{}".format(contenu), align = 'center', font = ('Arial', 14, 'normal'))
     time.sleep(30)
+
+def check(username, correct_answer):
+    l = 1
+    r = 1
+    score = open("/home/brante/Documents/dev/projet_personnel/quizz/scoreboard.txt","r")
+    for lines in score:
+        l += 1
+        if username in lines:
+            check_username = False
+            with open('months.txt', 'w') as fw:
+                for line in score:
+                    if l == r:
+                        print("Changed")
+                    r += 1
+            return check_username
+    return check_username
+            
 
 
 #################################################################################################################################
